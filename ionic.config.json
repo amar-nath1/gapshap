@@ -1,0 +1,7 @@
+{
+  "name": "gapshap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
