@@ -42,11 +42,18 @@ export class SignupPage implements OnInit {
 
   signupUserApiCall(username: string, email: string, password: string){
     this.accountService.signup(username, email, password).subscribe((res)=>{
-      console.log(res,'signupRes')
+      alert(username + ' , Registered Successfully')
     },(error)=>{
       console.log(error,'this.is error')
       this.errorInRegistration = {isError: true, errorText: error.error.error}
+      this.hideErrorMessage()
     })
+  }
+
+  hideErrorMessage(){
+    setTimeout(() => {
+      this.errorInRegistration = {isError: false, errorText: ''}
+    }, 1000);
   }
 
   ngOnInit() {
