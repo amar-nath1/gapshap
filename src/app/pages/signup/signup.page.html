@@ -45,6 +45,9 @@
   </div>
 
   <button type="submit" class="submit-button" [disabled]="signupForm.invalid">Sign Up</button>
+  <div *ngIf="errorInRegistration.isError" class="error-message">
+    {{errorInRegistration.errorText}}
+  </div>
 </form>
 
   
