@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
       alert(' Login  Successfully')
     },(error)=>{
       console.log(error,'this.is error')
-      this.errorInRegistration = {isError: true, errorText: error.error.error}
+      this.errorInRegistration = {isError: true, errorText: error.error.message}
       this.hideErrorMessage()
     })
   }
