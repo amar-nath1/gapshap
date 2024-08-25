@@ -14,7 +14,7 @@ export class ApiService {
     this.apiUrl = 'http://localhost:5000/api/users/signup'
    }
 
-  post(body:{username: string, email: string, password: string}): Observable<any> {
+  post(body: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     
 

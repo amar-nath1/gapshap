@@ -17,6 +17,15 @@ export class AccountService {
     const body = { username, email, password };
 
     return this.apiService.post(body).pipe(map(()=>{
+
+    }));
+  }
+
+  login(email: string, password: string): Observable<any> {
+    
+    const body = { email, password };
+
+    return this.apiService.post(body).pipe(map(()=>{
       
     }));
   }

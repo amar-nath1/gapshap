@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<!-- src/app/pages/signup/signup.page.html -->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="signup-form">
+  
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" class="form-control"/>
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+      Enter a valid email address.
+    </div>
+  </div>
+
+ 
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" class="form-control"/>
+  </div>
+
+
+  <button type="submit" class="submit-button" [disabled]="loginForm.invalid">Login</button>
+  <div *ngIf="errorInRegistration.isError" class="error-message">
+    {{errorInRegistration.errorText}}
+  </div>
+</form>
+<a [routerLink]="['/signup']">Signup</a>
+
+  
+</ion-content>
