@@ -16,7 +16,7 @@ export class AccountService {
     
     const body = { username, email, password };
 
-    return this.apiService.post(body).pipe(map(()=>{
+    return this.apiService.post('signup',body).pipe(map(()=>{
 
     }));
   }
@@ -25,7 +25,16 @@ export class AccountService {
     
     const body = { email, password };
 
-    return this.apiService.post(body).pipe(map(()=>{
+    return this.apiService.post('login',body).pipe(map(()=>{
+      
+    }));
+  }
+
+  sendChatMessage(email: string, message: string): Observable<any> {
+    
+    const body = { email, message };
+
+    return this.apiService.post('message',body).pipe(map(()=>{
       
     }));
   }

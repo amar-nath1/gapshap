@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class LoginPage implements OnInit {
   public errorInRegistration = {isError: false, errorText:''}
   
   constructor(private fb: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router,
   ) {
 
     this.loginForm = this.fb.group({
@@ -40,12 +42,19 @@ export class LoginPage implements OnInit {
 
   loginUserApiCall(email: string, password: string){
     this.accountService.login(email, password).subscribe((res)=>{
-      alert(' Login  Successfully')
+      // alert(' Login  Successfully')
+      this.saveLoginCredsToLocalStorage(email)
+      this.router.navigateByUrl('/home')
+
     },(error)=>{
       console.log(error,'this.is error')
       this.errorInRegistration = {isError: true, errorText: error.error.message}
       this.hideErrorMessage()
     })
+  }
+
+  saveLoginCredsToLocalStorage(email:string){
+    localStorage.setItem('email',email)
   }
 
   hideErrorMessage(){

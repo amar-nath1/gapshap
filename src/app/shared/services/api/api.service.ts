@@ -11,13 +11,13 @@ export class ApiService {
     private http: HttpClient,
     
   ) {
-    this.apiUrl = 'http://localhost:5000/api/users/login'
+    this.apiUrl = 'http://localhost:5000/api/users/'
    }
 
-  post(body: any): Observable<any> {
+  post(endpoint: string, body: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     
 
-    return this.http.post(this.apiUrl, body, { headers });
+    return this.http.post(`${this.apiUrl}${endpoint}`, body, { headers });
   }
 }

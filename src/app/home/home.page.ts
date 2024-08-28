@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../shared/services/account/account.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  public message = '';
 
-  constructor() {}
+  constructor(
+    private accountService: AccountService,
+  ) {}
+
+  sendChatMessage(){
+      this.accountService.sendChatMessage(this.fetchEmailFromLocalStorage(),this.message).subscribe((res)=>{
+console.log(res, 'messageSent')
+      })
+  }
+
+  fetchEmailFromLocalStorage():string{
+    return localStorage.getItem('email') || ''
+  }
 
 }

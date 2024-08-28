@@ -1,16 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Chat App</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="chat-container">
+    <div class="message you">
+      <div class="message-content">You: Hi there!</div>
+    </div>
+    <div class="message valhala">
+      <div class="message-content">Valhala: Hello!</div>
+    </div>
+    <!-- Add more messages here -->
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input [(ngModel)]="message" class="ion-padding" placeholder="Type a message..."></ion-input>
+    <ion-button (click)="sendChatMessage()"><ion-icon name="send-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-footer>
