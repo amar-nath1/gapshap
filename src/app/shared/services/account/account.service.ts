@@ -38,4 +38,10 @@ export class AccountService {
       
     }));
   }
+
+  getAllMessages(){
+    return this.apiService.get('message').pipe(map(()=>{
+      
+    }))
+  }
 }

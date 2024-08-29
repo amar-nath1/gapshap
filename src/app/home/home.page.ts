@@ -11,16 +11,24 @@ export class HomePage {
 
   constructor(
     private accountService: AccountService,
-  ) {}
+  ) {
+    this.getAllMessages()
+  }
 
   sendChatMessage(){
       this.accountService.sendChatMessage(this.fetchEmailFromLocalStorage(),this.message).subscribe((res)=>{
-console.log(res, 'messageSent')
+
       })
   }
 
   fetchEmailFromLocalStorage():string{
     return localStorage.getItem('email') || ''
+  }
+
+  getAllMessages(){
+    this.accountService.getAllMessages().subscribe((res)=>{
+        console.log(res,'all messages')
+    })
   }
 
 }

@@ -20,4 +20,11 @@ export class ApiService {
 
     return this.http.post(`${this.apiUrl}${endpoint}`, body, { headers });
   }
+
+  get(endpoint: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    
+
+    return this.http.get(`${this.apiUrl}${endpoint}`, { headers });
+  }
 }
