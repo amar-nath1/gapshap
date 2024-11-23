@@ -19,6 +19,12 @@
   background: #e0e0e0;
   padding: 10px;
   border-radius: 10px;
+
+  .time{
+    text-align: right;
+    font-size: small;
+    color: blueviolet;
+  }
 }
 
 .message.you .message-content {
@@ -27,4 +33,20 @@
 
 .message.valhala .message-content {
   background: #d1e0ff;
+}
+
+.older-msg-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: blue;
+}
+
+.send-msg-button{
+  position: absolute;
+  bottom: 20%;
+  right: 9%;
+}
+
+.msg-input-field{
+  width: 30%;
 }

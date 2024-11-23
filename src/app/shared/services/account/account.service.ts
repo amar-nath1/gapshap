@@ -34,14 +34,14 @@ export class AccountService {
     
     const body = { email, message };
 
-    return this.apiService.post('message',body).pipe(map(()=>{
-      
+    return this.apiService.post('message',body).pipe(map((sendMsgResponse)=>{
+      return sendMsgResponse
     }));
   }
 
-  getAllMessages(){
-    return this.apiService.get('message').pipe(map(()=>{
-      
+  getAllMessages(params:string){
+    return this.apiService.get('message',params).pipe(map((messagesRes)=>{
+      return messagesRes;
     }))
   }
 }

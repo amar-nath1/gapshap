@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/shared/services/account/account.service';
+import { AuthManagerService } from 'src/app/shared/services/authenticationManager/auth-manager.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginPage implements OnInit {
   constructor(private fb: FormBuilder,
     private accountService: AccountService,
     private router: Router,
+    private authManager: AuthManagerService,
   ) {
 
     this.loginForm = this.fb.group({
@@ -43,7 +45,7 @@ export class LoginPage implements OnInit {
   loginUserApiCall(email: string, password: string){
     this.accountService.login(email, password).subscribe((res)=>{
       // alert(' Login  Successfully')
-      this.saveLoginCredsToLocalStorage(email)
+      this.authManager.saveLoginCredsToLocalStorage('email', email)
       this.router.navigateByUrl('/home')
 
     },(error)=>{
@@ -53,9 +55,7 @@ export class LoginPage implements OnInit {
     })
   }
 
-  saveLoginCredsToLocalStorage(email:string){
-    localStorage.setItem('email',email)
-  }
+  
 
   hideErrorMessage(){
     setTimeout(() => {

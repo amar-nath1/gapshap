@@ -1,24 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Chat App</ion-title>
+    <ion-title (click)="routeToLogin()">Chat App</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="chat-container">
-    <div class="message you">
-      <div class="message-content">You: Hi there!</div>
+    <ion-label class="older-msg-link" (click)="getAllMessages()">View Older messeges</ion-label>
+    <div class="message" [ngClass]="message.email === loggedInEmail?'you':'valhala'" *ngFor="let message of messagesArr">
+      <!-- <div >{{message.created_at.split('T')[0]}}</div> -->
+      <div class="message-content">{{message.email === loggedInEmail?'You':message.email.split('@')[0]}}: {{message.message}}
+
+
+        <div class="time">{{message.created_at.split('T')[1].split('.')[0]}}</div>
+      </div>
+      
     </div>
-    <div class="message valhala">
+    <!-- <div class="message valhala">
       <div class="message-content">Valhala: Hello!</div>
-    </div>
+    </div> -->
     <!-- Add more messages here -->
   </div>
+  <ion-fab>
+    <ion-fab-button id="present-alert">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-alert
+  trigger="present-alert"
+  header="Please enter your info"
+  [buttons]="alertButtons"
+  [inputs]="alertInputs"
+  (didDismiss)="setResult($event)"
+></ion-alert>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-input [(ngModel)]="message" class="ion-padding" placeholder="Type a message..."></ion-input>
-    <ion-button (click)="sendChatMessage()"><ion-icon name="send-outline"></ion-icon></ion-button>
+    <ion-input [(ngModel)]="message" class="ion-padding msg-input-field" placeholder="Type a message..." (keyup.enter)="sendChatMessage()"></ion-input>
+    <ion-button class="send-msg-button" (click)="sendChatMessage()"><ion-icon name="send-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-footer>
